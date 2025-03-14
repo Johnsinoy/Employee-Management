@@ -21,11 +21,11 @@ public class Employee {
     @NotNull
     private Double salary;
 
-    @ElementCollection
-    private List<String> employmentType;  // ✅ Store selected employment types
+    @NotBlank(message = "Employment type is required")
+    private String employmentType;  //  Restrict to one employment type
 
     @ElementCollection
-    private List<String> departments;  // ✅ Store multiple department selections
+    private List<String> departments;  // Multiple departments allowed
 
     // Getters and Setters
     public Long getId() { return id; }
@@ -39,8 +39,13 @@ public class Employee {
     public Double getSalary() { return salary; }
     public void setSalary(Double salary) { this.salary = salary; }
 
-    public List<String> getEmploymentType() { return employmentType; }
-    public void setEmploymentType(List<String> employmentType) { this.employmentType = employmentType; }
+    public String getEmploymentType() { return employmentType; }
+    public void setEmploymentType(String employmentType) {
+        if (employmentType == null || employmentType.trim().isEmpty()) {
+            throw new IllegalArgumentException("Employment type cannot be empty");
+        }
+        this.employmentType = employmentType;
+    }
 
     public List<String> getDepartments() { return departments; }
     public void setDepartments(List<String> departments) { this.departments = departments; }
