@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration Success</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>Employee Registration Successful!</h2>
+
+    <div class="employee-details">
+        <h3>Employee Details:</h3>
+        <p><strong>Name:</strong> <span th:text="${employee.name}"></span></p>
+        <p><strong>Designation:</strong> <span th:text="${employee.designation}"></span></p>
+        <p><strong>Salary:</strong> $<span th:text="${employee.salary}"></span></p>
+        <p><strong>Employment Type:</strong> <span th:text="${#strings.listJoin(employee.employmentType, ', ')}"></span></p>
+        <p><strong>Departments:</strong> <span th:text="${#strings.listJoin(employee.departments, ', ')}"></span></p>
+    </div>
+
+    <div class="buttons">
+        <a href="/employee/register" class="btn">Register Another Employee</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Registration</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>Register Employee</h2>
+    <form action="/employee/register" method="post" th:object="${employee}">
+
+        <!-- Name Input -->
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required />
+
+        <!-- Designation Selection -->
+        <label>Designation:</label>
+        <select th:field="*{designation}">
+            <option value="Software Engineer">Software Engineer</option>
+            <option value="Manager">Manager</option>
+            <option value="HR">HR</option>
+            <option value="Intern">Intern</option>
+        </select>
+
+        <!-- Employment Type (Dropdown) -->
+        <label>Employment Type:</label>
+        <select th:field="*{employmentType}" required>
+            <option value="" disabled selected>Select Employment Type</option>
+            <option value="Full-Time">Full-Time</option>
+            <option value="Part-Time">Part-Time</option>
+        </select>
+
+        <!-- Department Selection (Checkboxes) -->
+        <label>Departments:</label>
+        <div>
+            <input type="checkbox" th:field="*{departments}" value="IT" /> IT
+            <input type="checkbox" th:field="*{departments}" value="HR" /> HR
+            <input type="checkbox" th:field="*{departments}" value="Finance" /> Finance
+            <input type="checkbox" th:field="*{departments}" value="Marketing" /> Marketing
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+</body>
+</html>
