@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -23,15 +22,22 @@
             <option value="Intern">Intern</option>
         </select>
 
-        <!-- Employment Type (Dropdown) -->
-        <label>Employment Type:</label>
-        <select th:field="*{employmentType}" required>
-            <option value="" disabled selected>Select Employment Type</option>
-            <option value="Full-Time">Full-Time</option>
-            <option value="Part-Time">Part-Time</option>
-        </select>
+        <!-- Employment Type (Checkboxes with exclusive selection) -->
+        <label>Employment Type:</label><br>
+        <label>
+            <input type="checkbox" name="employmentType" value="Full-Time"
+                   th:checked="${employee.employmentType == 'Full-Time'}"
+                   onclick="handleCheckboxClick(this)" />
+            Full-Time
+        </label><br>
+        <label>
+            <input type="checkbox" name="employmentType" value="Part-Time"
+                   th:checked="${employee.employmentType == 'Part-Time'}"
+                   onclick="handleCheckboxClick(this)" />
+            Part-Time
+        </label>
 
-        <!-- Department Selection (Checkboxes) -->
+        <!-- Department Selection (Multiple Checkboxes) -->
         <label>Departments:</label>
         <div>
             <input type="checkbox" th:field="*{departments}" value="IT" /> IT
@@ -43,5 +49,17 @@
         <button type="submit">Register</button>
     </form>
 </div>
+
+<!-- JavaScript to ensure only one employment type is selected -->
+<script>
+    function handleCheckboxClick(clickedBox) {
+        const checkboxes = document.getElementsByName('employmentType');
+        checkboxes.forEach((box) => {
+            if (box !== clickedBox) {
+                box.checked = false;
+            }
+        });
+    }
+</script>
 </body>
 </html>
