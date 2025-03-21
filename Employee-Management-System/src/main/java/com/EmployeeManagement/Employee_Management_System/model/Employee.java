@@ -1,6 +1,7 @@
 package com.EmployeeManagement.Employee_Management_System.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import org.antlr.v4.runtime.misc.NotNull;
 import jakarta.validation.constraints.NotBlank;
 
@@ -25,6 +26,7 @@ public class Employee {
     private String employmentType;  //  Restrict to one employment type
 
     @ElementCollection
+    @NotEmpty(message = "At least one department must be selected")
     private List<String> departments;  // Multiple departments allowed
 
     // Getters and Setters
