@@ -12,6 +12,7 @@
         <!-- Name Input -->
         <label>Name:</label>
         <input type="text" th:field="*{name}" required />
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
 
         <!-- Designation Selection -->
         <label>Designation:</label>
@@ -24,6 +25,7 @@
 
         <!-- Employment Type (Checkboxes with exclusive selection) -->
         <label>Employment Type:</label><br>
+        <div th:if="${#fields.hasErrors('employmentType')}" th:errors="*{employmentType}" class="error"></div>
         <label>
             <input type="checkbox" name="employmentType" value="Full-Time"
                    th:checked="${employee.employmentType == 'Full-Time'}"
@@ -45,6 +47,8 @@
             <input type="checkbox" th:field="*{departments}" value="Finance" /> Finance
             <input type="checkbox" th:field="*{departments}" value="Marketing" /> Marketing
         </div>
+        <div th:if="${#fields.hasErrors('departments')}" th:errors="*{departments}" class="error"></div>
+
 
         <button type="submit">Register</button>
     </form>
